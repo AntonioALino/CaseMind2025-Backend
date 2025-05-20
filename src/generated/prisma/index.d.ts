@@ -1956,6 +1956,7 @@ export namespace Prisma {
     content: string | null
     published: boolean | null
     authorId: string | null
+    image: Uint8Array | null
     slug: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -1967,6 +1968,7 @@ export namespace Prisma {
     content: string | null
     published: boolean | null
     authorId: string | null
+    image: Uint8Array | null
     slug: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -1978,6 +1980,7 @@ export namespace Prisma {
     content: number
     published: number
     authorId: number
+    image: number
     slug: number
     createdAt: number
     updatedAt: number
@@ -1991,6 +1994,7 @@ export namespace Prisma {
     content?: true
     published?: true
     authorId?: true
+    image?: true
     slug?: true
     createdAt?: true
     updatedAt?: true
@@ -2002,6 +2006,7 @@ export namespace Prisma {
     content?: true
     published?: true
     authorId?: true
+    image?: true
     slug?: true
     createdAt?: true
     updatedAt?: true
@@ -2013,6 +2018,7 @@ export namespace Prisma {
     content?: true
     published?: true
     authorId?: true
+    image?: true
     slug?: true
     createdAt?: true
     updatedAt?: true
@@ -2097,6 +2103,7 @@ export namespace Prisma {
     content: string
     published: boolean
     authorId: string
+    image: Uint8Array
     slug: string
     createdAt: Date
     updatedAt: Date
@@ -2125,6 +2132,7 @@ export namespace Prisma {
     content?: boolean
     published?: boolean
     authorId?: boolean
+    image?: boolean
     slug?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2139,12 +2147,13 @@ export namespace Prisma {
     content?: boolean
     published?: boolean
     authorId?: boolean
+    image?: boolean
     slug?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "published" | "authorId" | "slug" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "published" | "authorId" | "image" | "slug" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2160,6 +2169,7 @@ export namespace Prisma {
       content: string
       published: boolean
       authorId: string
+      image: Uint8Array
       slug: string
       createdAt: Date
       updatedAt: Date
@@ -2538,6 +2548,7 @@ export namespace Prisma {
     readonly content: FieldRef<"Post", 'String'>
     readonly published: FieldRef<"Post", 'Boolean'>
     readonly authorId: FieldRef<"Post", 'String'>
+    readonly image: FieldRef<"Post", 'Bytes'>
     readonly slug: FieldRef<"Post", 'String'>
     readonly createdAt: FieldRef<"Post", 'DateTime'>
     readonly updatedAt: FieldRef<"Post", 'DateTime'>
@@ -2934,6 +2945,7 @@ export namespace Prisma {
     content: 'content',
     published: 'published',
     authorId: 'authorId',
+    image: 'image',
     slug: 'slug',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -2994,6 +3006,13 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'Bytes'
+   */
+  export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
     
 
 
@@ -3077,6 +3096,7 @@ export namespace Prisma {
     content?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
     authorId?: StringFilter<"Post"> | string
+    image?: BytesFilter<"Post"> | Uint8Array
     slug?: StringFilter<"Post"> | string
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
@@ -3089,6 +3109,7 @@ export namespace Prisma {
     content?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
+    image?: SortOrder
     slug?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -3106,6 +3127,7 @@ export namespace Prisma {
     content?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
     authorId?: StringFilter<"Post"> | string
+    image?: BytesFilter<"Post"> | Uint8Array
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -3117,6 +3139,7 @@ export namespace Prisma {
     content?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
+    image?: SortOrder
     slug?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -3134,6 +3157,7 @@ export namespace Prisma {
     content?: StringWithAggregatesFilter<"Post"> | string
     published?: BoolWithAggregatesFilter<"Post"> | boolean
     authorId?: StringWithAggregatesFilter<"Post"> | string
+    image?: BytesWithAggregatesFilter<"Post"> | Uint8Array
     slug?: StringWithAggregatesFilter<"Post"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
@@ -3211,6 +3235,7 @@ export namespace Prisma {
     title: string
     content: string
     published?: boolean
+    image: Uint8Array
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -3223,6 +3248,7 @@ export namespace Prisma {
     content: string
     published?: boolean
     authorId: string
+    image: Uint8Array
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -3233,6 +3259,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
+    image?: BytesFieldUpdateOperationsInput | Uint8Array
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3245,6 +3272,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     authorId?: StringFieldUpdateOperationsInput | string
+    image?: BytesFieldUpdateOperationsInput | Uint8Array
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3256,6 +3284,7 @@ export namespace Prisma {
     content: string
     published?: boolean
     authorId: string
+    image: Uint8Array
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -3266,6 +3295,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
+    image?: BytesFieldUpdateOperationsInput | Uint8Array
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3277,6 +3307,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     authorId?: StringFieldUpdateOperationsInput | string
+    image?: BytesFieldUpdateOperationsInput | Uint8Array
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3388,6 +3419,13 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type BytesFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel>
+    in?: Uint8Array[]
+    notIn?: Uint8Array[]
+    not?: NestedBytesFilter<$PrismaModel> | Uint8Array
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -3405,6 +3443,7 @@ export namespace Prisma {
     content?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
+    image?: SortOrder
     slug?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -3416,6 +3455,7 @@ export namespace Prisma {
     content?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
+    image?: SortOrder
     slug?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -3427,6 +3467,7 @@ export namespace Prisma {
     content?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
+    image?: SortOrder
     slug?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -3438,6 +3479,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type BytesWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel>
+    in?: Uint8Array[]
+    notIn?: Uint8Array[]
+    not?: NestedBytesWithAggregatesFilter<$PrismaModel> | Uint8Array
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBytesFilter<$PrismaModel>
+    _max?: NestedBytesFilter<$PrismaModel>
   }
 
   export type PostCreateNestedManyWithoutAuthorInput = {
@@ -3498,6 +3549,10 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type BytesFieldUpdateOperationsInput = {
+    set?: Uint8Array
   }
 
   export type UserUpdateOneRequiredWithoutPostNestedInput = {
@@ -3582,6 +3637,13 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedBytesFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel>
+    in?: Uint8Array[]
+    notIn?: Uint8Array[]
+    not?: NestedBytesFilter<$PrismaModel> | Uint8Array
+  }
+
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
@@ -3590,11 +3652,22 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedBytesWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel>
+    in?: Uint8Array[]
+    notIn?: Uint8Array[]
+    not?: NestedBytesWithAggregatesFilter<$PrismaModel> | Uint8Array
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBytesFilter<$PrismaModel>
+    _max?: NestedBytesFilter<$PrismaModel>
+  }
+
   export type PostCreateWithoutAuthorInput = {
     id?: string
     title: string
     content: string
     published?: boolean
+    image: Uint8Array
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -3605,6 +3678,7 @@ export namespace Prisma {
     title: string
     content: string
     published?: boolean
+    image: Uint8Array
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -3645,6 +3719,7 @@ export namespace Prisma {
     content?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
     authorId?: StringFilter<"Post"> | string
+    image?: BytesFilter<"Post"> | Uint8Array
     slug?: StringFilter<"Post"> | string
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
@@ -3707,6 +3782,7 @@ export namespace Prisma {
     title: string
     content: string
     published?: boolean
+    image: Uint8Array
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -3717,6 +3793,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
+    image?: BytesFieldUpdateOperationsInput | Uint8Array
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3727,6 +3804,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
+    image?: BytesFieldUpdateOperationsInput | Uint8Array
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3737,6 +3815,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
+    image?: BytesFieldUpdateOperationsInput | Uint8Array
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
