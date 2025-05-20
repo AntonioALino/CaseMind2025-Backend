@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/AntonioALino/CaseMind2025-Backend#readme",
   "devDependencies": {
+    "@types/cors": "^2.8.18",
     "@types/express": "^5.0.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
