@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import path from "path";
+import fs from "fs";
 import {
     createPost,
     deletePost,
@@ -7,13 +9,31 @@ import {
     updatePost,
  } from '../../services/Posts/PostsServices';
 
-export const createPostController = async (req: Request, res: Response) => {
-    try {
-        const {title, content, userId} = req.body;
-        const image = req.file?.filename ?? "";
 
-        const post = await createPost(title, content, image, userId);
-        res.status(201).json(post)
+
+export const createPostController = async (req: Request, res: Response) : Promise<any> => {
+    try {
+    const {title, content, authorId} = req.body;
+
+    const imageFilename = req.file?.filename;
+
+    if (!imageFilename) {
+        return res.status(400).json({ message: 'Imagem não enviada' });
+    }
+
+    
+
+    // Caminho até a imagem
+    const imagePath = path.join(__dirname, '../../../uploads', imageFilename);
+    
+    // Lê a imagem como buffer
+    const imageBuffer = fs.readFileSync(imagePath);
+
+    fs.unlinkSync(imagePath);
+
+    // Chama o service passando o buffer
+    const post = await createPost(title, content, authorId, imageBuffer);
+    res.status(201).json(post)
 
     } catch (error) {
         console.error(error);
@@ -21,7 +41,7 @@ export const createPostController = async (req: Request, res: Response) => {
     }
 }
 
-export const getPostByIdController = async (req: Request, res: Response) => {
+export const getPostByIdController = async (req: Request, res: Response) : Promise<any>=> {
     try {
         const { id } = req.params;
         const post = await getPostById(id);
@@ -47,7 +67,7 @@ export const getAllPostsController = async (req: Request, res: Response) => {
 
 export const getPostsByUserIdController = async (req: Request, res: Response) => {
     try {
-        const { userId } = req.params;
+        const { authorId } = req.params;
         const posts = await getAllPosts();
         res.status(200).json(posts);
     } catch (error) {

@@ -1,14 +1,14 @@
 import { prisma } from "../../database/Prisma"
 
-export const createPost = async (title: string, content: string, userId: string, image: string) => {
+export const createPost = async (title: string, content: string, authorId: string, image: Buffer) => {
     return await prisma.post.create({
         data: {
             title,
             content,
             slug: title.toLowerCase().replace(/\s+/g, '-'), 
-            image: new Uint8Array(Buffer.from(image, 'base64')),
+            image,
             author: {
-                connect: { id: userId }
+                connect: { id: authorId }
             }
         }
     })

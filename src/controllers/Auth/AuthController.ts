@@ -3,7 +3,7 @@ import { prisma } from "../../database/Prisma";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export const loginController = async (req: Request, res: Response) => {
+export const loginController = async (req: Request, res: Response) : Promise<any> => {
     const {email, password} = req.body;
 
     try{

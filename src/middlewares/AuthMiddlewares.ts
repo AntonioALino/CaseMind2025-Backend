@@ -13,7 +13,8 @@ export const authMiddleware = (
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        return res.status(401).json({ message: "Token faltando" });
+        res.status(401).json({ message: "Token faltando" });
+        return;
     }
 
     const [, token] = authHeader.split(" ");
@@ -23,8 +24,8 @@ export const authMiddleware = (
         const { sub } = decoded as JWTPayload;
 
         req.user_id = sub;
-        return next();
+        next();
     } catch (err) {
-        return res.status(401).json({ message: "Token inválido" });
+         res.status(401).json({ message: "Token inválido" });
     }
 }

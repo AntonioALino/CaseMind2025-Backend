@@ -21,7 +21,7 @@ export const CreateUserController = async (req: Request, res: Response) => {
     }
 }
 
-export const GetUserByIdController = async (req: Request, res: Response) => {
+export const GetUserByIdController = async (req: Request, res: Response) : Promise<any> => {
     try {
         const { id } = req.params;
         const user = await GetUserById(id);
@@ -35,12 +35,13 @@ export const GetUserByIdController = async (req: Request, res: Response) => {
     }
 }
 
-export const DeleteUserByIdController = async (req: Request, res: Response) => {
+export const DeleteUserByIdController = async (req: Request, res: Response) : Promise<void> => {
     try {
         const { id } = req.params;
         const user = await DeleteUserById(id);
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+            res.status(404).json({ message: "User not found" });
+            return;
         }
         res.status(200).json({ message: "User deleted successfully" });
     } catch (error) {
