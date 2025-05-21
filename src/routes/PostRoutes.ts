@@ -13,9 +13,9 @@ const router = Router();
 
 router.post("/posts", authMiddleware, upload.single('image'), createPostController);
 
-router.get("/posts/:id", authMiddleware, getPostByIdController);
+router.get("/posts/:id", getPostByIdController);
 
-router.get("/posts", authMiddleware, getAllPostsController);
+router.get("/posts", getAllPostsController);
 
 router.get("/posts/user/:userId", authMiddleware, getPostsByUserIdController);
 

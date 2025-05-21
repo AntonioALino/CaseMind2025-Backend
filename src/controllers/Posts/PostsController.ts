@@ -58,7 +58,20 @@ export const getPostByIdController = async (req: Request, res: Response) : Promi
 export const getAllPostsController = async (req: Request, res: Response) => {
     try {
         const posts = await getAllPosts();
-        res.status(200).json(posts);
+        if (posts.length > 0) {
+            console.log(typeof posts[0].image);
+        }
+        const postsWithFormattedImage = posts.map(post => ({
+  title: post.title,
+  content: post.content,
+  slug: post.slug,
+  createdAt: post.createdAt,
+  image: `data:image/png;base64,${Buffer.from(post.image).toString('base64')}`,
+}));
+
+  
+
+        res.status(200).json(postsWithFormattedImage);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error fetching posts" });

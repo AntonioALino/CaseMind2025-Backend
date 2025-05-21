@@ -33,6 +33,8 @@ export const getAllPosts = async () => {
                     email: true
                 }
             },
+            image:true,
+            slug: true,
             createdAt: true,
         }
     })
