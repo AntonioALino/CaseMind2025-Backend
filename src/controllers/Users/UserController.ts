@@ -8,11 +8,11 @@ import {
 
 export const CreateUserController = async (req: Request, res: Response) => {
     try {
-        const { name, email, password } = req.body;
+        const { email, password } = req.body;
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-        const user = await CreateUser(name, email, hashedPassword);
+        const user = await CreateUser(email, hashedPassword);
 
         res.status(201).json(user);
     } catch (error) {

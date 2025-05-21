@@ -1,9 +1,8 @@
 import { prisma } from "../../database/Prisma";
 
-export const CreateUser = async(name: string, email: string, password: string) => {
+export const CreateUser = async( email: string, password: string) => {
     return await prisma.user.create({
         data: {
-            name,
             email,
             password
         }
