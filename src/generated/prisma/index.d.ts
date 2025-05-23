@@ -991,6 +991,7 @@ export namespace Prisma {
     password: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    profileImage: Uint8Array | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1000,6 +1001,7 @@ export namespace Prisma {
     password: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    profileImage: Uint8Array | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1009,6 +1011,7 @@ export namespace Prisma {
     password: number
     createdAt: number
     updatedAt: number
+    profileImage: number
     _all: number
   }
 
@@ -1020,6 +1023,7 @@ export namespace Prisma {
     password?: true
     createdAt?: true
     updatedAt?: true
+    profileImage?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1029,6 +1033,7 @@ export namespace Prisma {
     password?: true
     createdAt?: true
     updatedAt?: true
+    profileImage?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1038,6 +1043,7 @@ export namespace Prisma {
     password?: true
     createdAt?: true
     updatedAt?: true
+    profileImage?: true
     _all?: true
   }
 
@@ -1120,6 +1126,7 @@ export namespace Prisma {
     password: string
     createdAt: Date
     updatedAt: Date
+    profileImage: Uint8Array | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1146,6 +1153,7 @@ export namespace Prisma {
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    profileImage?: boolean
     Post?: boolean | User$PostArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1159,9 +1167,10 @@ export namespace Prisma {
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    profileImage?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "createdAt" | "updatedAt" | "profileImage", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Post?: boolean | User$PostArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1179,6 +1188,7 @@ export namespace Prisma {
       password: string
       createdAt: Date
       updatedAt: Date
+      profileImage: Uint8Array | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1555,6 +1565,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly profileImage: FieldRef<"User", 'Bytes'>
   }
     
 
@@ -2933,7 +2944,8 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    profileImage: 'profileImage'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -3011,16 +3023,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
+   * Reference to a field of type 'Bytes'
    */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+  export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
     
 
 
   /**
-   * Reference to a field of type 'Bytes'
+   * Reference to a field of type 'Boolean'
    */
-  export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -3044,6 +3056,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    profileImage?: BytesNullableFilter<"User"> | Uint8Array | null
     Post?: PostListRelationFilter
   }
 
@@ -3054,6 +3067,7 @@ export namespace Prisma {
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    profileImage?: SortOrderInput | SortOrder
     Post?: PostOrderByRelationAggregateInput
     _relevance?: UserOrderByRelevanceInput
   }
@@ -3068,6 +3082,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    profileImage?: BytesNullableFilter<"User"> | Uint8Array | null
     Post?: PostListRelationFilter
   }, "id" | "email">
 
@@ -3078,6 +3093,7 @@ export namespace Prisma {
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    profileImage?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -3093,6 +3109,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    profileImage?: BytesNullableWithAggregatesFilter<"User"> | Uint8Array | null
   }
 
   export type PostWhereInput = {
@@ -3178,6 +3195,7 @@ export namespace Prisma {
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    profileImage?: Uint8Array | null
     Post?: PostCreateNestedManyWithoutAuthorInput
   }
 
@@ -3188,6 +3206,7 @@ export namespace Prisma {
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    profileImage?: Uint8Array | null
     Post?: PostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
@@ -3198,6 +3217,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     Post?: PostUpdateManyWithoutAuthorNestedInput
   }
 
@@ -3208,6 +3228,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     Post?: PostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
@@ -3218,6 +3239,7 @@ export namespace Prisma {
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    profileImage?: Uint8Array | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -3227,6 +3249,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -3236,6 +3259,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
   }
 
   export type PostCreateInput = {
@@ -3362,6 +3386,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type BytesNullableFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | null
+    notIn?: Uint8Array[] | null
+    not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
+  }
+
   export type PostListRelationFilter = {
     every?: PostWhereInput
     some?: PostWhereInput
@@ -3390,6 +3421,7 @@ export namespace Prisma {
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    profileImage?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -3399,6 +3431,7 @@ export namespace Prisma {
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    profileImage?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -3408,6 +3441,7 @@ export namespace Prisma {
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    profileImage?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3458,6 +3492,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type BytesNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | null
+    notIn?: Uint8Array[] | null
+    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Uint8Array | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBytesNullableFilter<$PrismaModel>
+    _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -3563,6 +3607,10 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type NullableBytesFieldUpdateOperationsInput = {
+    set?: Uint8Array | null
+  }
+
   export type PostUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
@@ -3654,6 +3702,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedBytesNullableFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | null
+    notIn?: Uint8Array[] | null
+    not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -3724,6 +3779,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedBytesNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | null
+    notIn?: Uint8Array[] | null
+    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Uint8Array | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBytesNullableFilter<$PrismaModel>
+    _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -3826,6 +3891,7 @@ export namespace Prisma {
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    profileImage?: Uint8Array | null
   }
 
   export type UserUncheckedCreateWithoutPostInput = {
@@ -3835,6 +3901,7 @@ export namespace Prisma {
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    profileImage?: Uint8Array | null
   }
 
   export type UserCreateOrConnectWithoutPostInput = {
@@ -3860,6 +3927,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
   }
 
   export type UserUncheckedUpdateWithoutPostInput = {
@@ -3869,6 +3937,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
   }
 
   export type PostCreateManyAuthorInput = {
