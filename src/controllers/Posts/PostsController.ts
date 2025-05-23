@@ -9,6 +9,7 @@ import {
     getPostBySlug,
     getPostsByUserId,
     updatePost,
+    updateUserProfile,
  } from '../../services/Posts/PostsServices';
 import { AuthRequest } from "../../middlewares/AuthRequest";
 
@@ -103,6 +104,38 @@ export const getPostsByUserIdController = async (req: AuthRequest, res: Response
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Erro ao buscar posts do usuário" });
+  }
+};
+
+export const updateUserProfileController = async (req: AuthRequest, res: Response) : Promise<any> => {
+  try {
+    const userId = req.user?.id;
+    const { name } = req.body;
+    
+
+    if (!userId) {
+      return res.status(401).json({ message: "Usuário não autenticado" });
+    }
+
+    let imageBuffer: Buffer | undefined;
+    if (req.file) {
+      const imagePath = path.join(__dirname, "../../../uploads", req.file.filename);
+      imageBuffer = fs.readFileSync(imagePath);
+      fs.unlinkSync(imagePath);
+    }
+
+    const updatedUser = await updateUserProfile(userId, name, imageBuffer);
+
+    res.status(200).json({
+      id: updatedUser.id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      image: updatedUser.profileImage ? `data:image/png;base64,${Buffer.from(updatedUser.profileImage).toString("base64")}` : null,
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erro ao atualizar perfil" });
   }
 };
 

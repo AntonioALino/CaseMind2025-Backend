@@ -67,6 +67,17 @@ export const getPostBySlug = async (slug: string) => {
   });
 };
 
+export const updateUserProfile = async (userId: string, name: string, image?: Buffer) => {
+  return await prisma.user.update({
+    where: { id: userId },
+    data: {
+      name,
+      profileImage: image ?? null 
+    },
+  });
+};
+
+
 
 export const updatePost = async (id: string, title: string, content: string) => {
     return await prisma.post.update({
