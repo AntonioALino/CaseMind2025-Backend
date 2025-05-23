@@ -6,10 +6,11 @@ import {
     deletePost,
     getAllPosts,
     getPostById,
+    getPostBySlug,
+    getPostsByUserId,
     updatePost,
  } from '../../services/Posts/PostsServices';
-
-
+import { AuthRequest } from "../../middlewares/AuthRequest";
 
 export const createPostController = async (req: Request, res: Response) : Promise<any> => {
     try {
@@ -59,14 +60,14 @@ export const getAllPostsController = async (req: Request, res: Response) => {
     try {
         const posts = await getAllPosts();
         if (posts.length > 0) {
-            console.log(typeof posts[0].image);
         }
         const postsWithFormattedImage = posts.map(post => ({
-  title: post.title,
-  content: post.content,
-  slug: post.slug,
-  createdAt: post.createdAt,
-  image: `data:image/png;base64,${Buffer.from(post.image).toString('base64')}`,
+            id: post.id,
+            title: post.title,
+            content: post.content,
+            slug: post.slug,
+            createdAt: post.createdAt,
+            image: `data:image/png;base64,${Buffer.from(post.image).toString('base64')}`,
 }));
 
   
@@ -78,16 +79,54 @@ export const getAllPostsController = async (req: Request, res: Response) => {
     }
 }
 
-export const getPostsByUserIdController = async (req: Request, res: Response) => {
-    try {
-        const { authorId } = req.params;
-        const posts = await getAllPosts();
-        res.status(200).json(posts);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error fetching posts" });
+export const getPostsByUserIdController = async (req: AuthRequest, res: Response): Promise<any> => {
+  try {
+    if (!req.user || !req.user.id) {
+      return res.status(400).json({ message: "Usuário não autenticado" });
     }
-}
+    const userId = req.user.id;
+
+    console.log("User ID extraído do token:", userId);
+
+    const posts = await getPostsByUserId(userId);
+
+    const postsWithFormattedImage = posts.map(post => ({
+      id: post.id,
+      authorId: post.authorId,
+      title: post.title,
+      content: post.content,
+      createdAt: post.createdAt,
+      image: `data:image/png;base64,${Buffer.from(post.image).toString("base64")}`,
+    }));
+
+    res.status(200).json(postsWithFormattedImage);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erro ao buscar posts do usuário" });
+  }
+};
+
+export const getPostBySlugController = async (req: Request, res: Response) : Promise<any> => {
+  try {
+    const { slug } = req.params;
+    const post = await getPostBySlug(slug);
+
+    if (!post) {
+      return res.status(404).json({ message: "Post não encontrado" });
+    }
+
+    const formattedPost = {
+      ...post,
+      image: `data:image/png;base64,${Buffer.from(post.image).toString('base64')}`
+    };
+
+    res.status(200).json(formattedPost);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erro ao buscar post por slug" });
+  }
+};
+
 
 export const updatePostController = async (req: Request, res: Response) => {
     try {

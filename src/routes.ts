@@ -11,15 +11,15 @@ const createServer = (): Application => {
     app.use(express.json());
     
     app.use(cors({}));
+
+    // Rota de posts
+    app.use('/api', postRoutes);
     
     // Adicionando rotas de usuário
     app.use('/api', userRoutes);
 
     // Rota de autenticacao
     app.use('/api/auth',  authRoutes); 
-
-    // Rota de posts
-    app.use('/api', postRoutes);
 
     app.use(ErrosHandleMiddlewares);
 

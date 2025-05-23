@@ -15,10 +15,14 @@ export const loginController = async (req: Request, res: Response) : Promise<any
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) return res.status(401).json({ message: 'Senha inválida'});
         
-        const token = jwt.sign({ email: email, password: password}, process.env.JWT_SECRET as string, {
-            expiresIn: '30d',
-            subject: user.id
-        });
+        const token = jwt.sign(
+             { id: user.id, name: user.name, email: user.email }, // payload útil e seguro
+                process.env.JWT_SECRET as string,
+                {
+                  expiresIn: '30d',
+                }
+            );
+
 
         return (
             res.status(200).json({

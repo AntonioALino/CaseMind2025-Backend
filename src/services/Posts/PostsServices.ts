@@ -25,6 +25,7 @@ export const getPostById = async (id : string) => {
 export const getAllPosts = async () => {
     return await prisma.post.findMany({
         select: {
+            id: true,
             title: true,
             content: true,
             author: {
@@ -41,17 +42,31 @@ export const getAllPosts = async () => {
 }
 
 export const getPostsByUserId = async (userId: string) => {
-    return await prisma.post.findMany({
-        where: {
-            authorId: userId
-        },
-        select: {
-            title: true,
-            content: true,
-            createdAt: true,
-        }
-    })
-}
+  const posts = await prisma.post.findMany({
+    where: {
+      authorId: userId,
+    },
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      createdAt: true,
+      image: true,
+      authorId: true,
+    }
+  });
+
+  console.log(`Posts encontrados para o usuário ${userId}:`, posts);
+  
+  return posts;
+};
+
+export const getPostBySlug = async (slug: string) => {
+  return await prisma.post.findUnique({
+    where: { slug },
+  });
+};
+
 
 export const updatePost = async (id: string, title: string, content: string) => {
     return await prisma.post.update({
